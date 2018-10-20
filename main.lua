@@ -1,10 +1,17 @@
 --Provide the number of commons, uncommons, rares and mythics from the simulated set
 --https://en.wikipedia.org/wiki/List_of_Magic:_The_Gathering_sets
 
-commons = 101
+commons = 111
 uncommons = 80
 rares = 53
 mythics = 15
+
+--What is the booster structure? Paper: 12,2,1; Arena: 5,2,1
+booster_commons = 5
+booster_uncommons = 2
+
+-- Mythic rare chance? Paper: 1 out of 8
+mythic_out_of = 8
 
 --Write out the quantities of the cards you want to have inside the brackets.
 --The quantities can be in any order.
@@ -18,11 +25,7 @@ wanted_rares     = {1,2,3,3,2}
 wanted_mythics   = {4,3,3,3,2}
 
 --Run the simulation several times for better understanding on the odds.
-simulations = 4
-
---Copy&Paste and run the code at https://repl.it/languages/lua
-
-
+simulations = 10
 
 function number_array(n)
     output = {}
@@ -69,7 +72,7 @@ end
 purchases = 0
 function buy_boosters()
     purchases = purchases + 1
-    mythic_chance = math.random(8)
+    mythic_chance = math.random(mythic_out_of)
 
     booster.c = shuffle(booster.c)
     booster.u = shuffle(booster.u)
@@ -78,8 +81,8 @@ function buy_boosters()
 end
 
 function add_to_collection()
-    for i = 1,12 do collection.c[booster.c[i]] = collection.c[booster.c[i]] + 1 end
-    for i = 1,2 do collection.u[booster.u[i]] = collection.u[booster.u[i]] + 1 end
+    for i = 1,booster_commons do collection.c[booster.c[i]] = collection.c[booster.c[i]] + 1 end
+    for i = 1,booster_uncommons do collection.u[booster.u[i]] = collection.u[booster.u[i]] + 1 end
 
     if mythic_chance == 1 and #booster.m > 0 then
         for i = 1,1 do collection.m[booster.m[i]] = collection.m[booster.m[i]] + 1 end

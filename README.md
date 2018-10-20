@@ -8,6 +8,4 @@ Assumptions
 + Cards of same rarity are equally likely to be in the booster.
 
 Run the main.lua code using a Lua interpreter.
-First nine variables are used to configure the simulator.
-
-Online Lua interpreter: https://repl.it/languages/lua
+First eleven variables are used to configure the simulator.
